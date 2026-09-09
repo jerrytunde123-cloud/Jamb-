@@ -34,8 +34,8 @@
                 <p class="hero-subtitle">Practice with standard JAMB questions across all subjects. Challenge your friends and classmates!</p>
                 
                 <div class="hero-actions">
-                    <button onclick="showSubjectsSection()" class="btn btn-primary">Start Quiz</button>
-                    <button onclick="shareOnWhatsApp()" class="btn btn-whatsapp">
+                    <button onclick="showSubjects()" class="btn btn-primary" id="startQuizBtn">Start Quiz</button>
+                    <button onclick="shareOnWhatsApp()" class="btn btn-whatsapp" id="shareWhatsAppBtn">
                         <span>📱</span> Share on WhatsApp
                     </button>
                 </div>
@@ -50,7 +50,7 @@
                         <span class="stat-label">Active Users</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">25+</span>
+                        <span class="stat-number">5</span>
                         <span class="stat-label">Subjects</span>
                     </div>
                 </div>
@@ -59,13 +59,17 @@
     </section>
 
     <!-- Subject Selection -->
-    <section id="subjects" class="subjects-section">
+    <section id="subjects" class="subjects-section" style="display: none;">
         <div class="container">
             <h2 class="section-title">Choose Your Subject</h2>
             <p class="section-subtitle">Select from JAMB standard subjects</p>
             
             <div class="subjects-grid" id="subjectsGrid">
                 <!-- Subjects will be dynamically added by JavaScript -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="goBackHome()" class="btn btn-secondary">← Back to Home</button>
             </div>
         </div>
     </section>
@@ -195,5 +199,12 @@
 
     <script src="quiz-data.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+        // Test if scripts loaded correctly
+        console.log('index.html loaded');
+        console.log('quizData loaded:', typeof quizData !== 'undefined');
+        console.log('script.js loaded:', typeof showSubjects !== 'undefined');
+    </script>
 </body>
-</html>
+                        </html>
