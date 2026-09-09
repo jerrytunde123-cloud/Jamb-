@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAMB Quiz Master - Test Your Knowledge</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">QuizMaster<span class="accent">NG</span></span>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#subjects" class="nav-link">Subjects</a>
+                <a href="#leaderboard" class="nav-link">Leaderboard</a>
+                <a href="https://whatsapp.com/channel/0029VbCJXuCDeON8S6aCk43B" target="_blank" class="whatsapp-btn">
+                    <span class="whatsapp-icon">💬</span> WhatsApp Channel
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Test Your <span class="highlight">JAMB</span> Knowledge</h1>
+                <p class="hero-subtitle">Practice with standard JAMB questions across all subjects. Challenge your friends and classmates!</p>
+                
+                <div class="hero-actions">
+                    <a href="#subjects" class="btn btn-primary">Start Quiz</a>
+                    <button onclick="shareOnWhatsApp()" class="btn btn-whatsapp">
+                        <span>📱</span> Share on WhatsApp
+                    </button>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalQuizzes">0</span>
+                        <span class="stat-label">Quizzes Taken</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="totalUsers">0</span>
+                        <span class="stat-label">Active Users</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Subjects</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subject Selection -->
+    <section id="subjects" class="subjects-section">
+        <div class="container">
+            <h2 class="section-title">Choose Your Subject</h2>
+            <p class="section-subtitle">Select from JAMB standard subjects</p>
+            
+            <div class="subjects-grid" id="subjectsGrid">
+                <!-- Subjects will be dynamically added -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="quiz-section" style="display: none;">
+        <div class="container">
+            <div class="quiz-header">
+                <div class="quiz-info">
+                    <h2 id="quizSubject" class="quiz-subject"></h2>
+                    <span id="quizProgress" class="quiz-progress"></span>
+                </div>
+                <div class="quiz-timer">
+                    <span class="timer-icon">⏱️</span>
+                    <span id="timer">20:00</span>
+                </div>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-number" id="questionNumber"></div>
+                <h3 class="question-text" id="questionText"></h3>
+                
+                <div class="options" id="optionsContainer">
+                    <!-- Options will be dynamically added -->
+                </div>
+                
+                <div class="quiz-actions">
+                    <button id="prevBtn" class="btn btn-secondary" onclick="previousQuestion()">Previous</button>
+                    <button id="nextBtn" class="btn btn-primary" onclick="nextQuestion()">Next</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results-section" style="display: none;">
+        <div class="container">
+            <div class="results-card">
+                <h2 class="results-title">Quiz Complete! 🎉</h2>
+                <div class="score-circle">
+                    <div class="score-number" id="finalScore">0%</div>
+                    <div class="score-label">Your Score</div>
+                </div>
+                
+                <div class="results-details">
+                    <div class="result-item">
+                        <span>Correct Answers:</span>
+                        <strong id="correctAnswers">0</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Wrong Answers:</span>
+                        <strong id="wrongAnswers">0</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Time Used:</span>
+                        <strong id="timeUsed">0:00</strong>
+                    </div>
+                </div>
+                
+                <div class="share-buttons">
+                    <button onclick="shareResults()" class="btn btn-share">
+                        <span>📤</span> Share Results
+                    </button>
+                    <button onclick="shareOnWhatsApp()" class="btn btn-whatsapp">
+                        <span>💬</span> WhatsApp
+                    </button>
+                    <button onclick="shareToFriends()" class="btn btn-friends">
+                        <span>👥</span> Challenge Friends
+                    </button>
+                </div>
+                
+                <div class="results-actions">
+                    <button onclick="retakeQuiz()" class="btn btn-primary">Retake Quiz</button>
+                    <button onclick="tryAnotherSubject()" class="btn btn-secondary">Try Another Subject</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="leaderboard-section">
+        <div class="container">
+            <h2 class="section-title">Leaderboard</h2>
+            <p class="section-subtitle">Top performers this week</p>
+            
+            <div class="leaderboard-table">
+                <div class="leaderboard-header">
+                    <span>Rank</span>
+                    <span>Name</span>
+                    <span>Subject</span>
+                    <span>Score</span>
+                </div>
+                <div id="leaderboardBody">
+                    <!-- Leaderboard entries will be dynamically added -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAMB Assistance Banner -->
+    <section class="assistance-banner">
+        <div class="container">
+            <div class="assistance-content">
+                <div class="assistance-text">
+                    <h3>🎯 Need JAMB Main Exam Assistance?</h3>
+                    <p>Get expert help and guidance for your JAMB examination</p>
+                </div>
+                <a href="https://wa.me/message/WHTP63YEENQ4C1" target="_blank" class="btn btn-contact">
+                    💬 Contact Me on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 QuizMaster NG. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://whatsapp.com/channel/0029VbCJXuCDeON8S6aCk43B" target="_blank">WhatsApp Channel</a>
+                <a href="https://wa.me/message/WHTP63YEENQ4C1" target="_blank">JAMB Assistance</a>
+                <a href="#subjects">Subjects</a>
+                <a href="#leaderboard">Leaderboard</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="quiz-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
